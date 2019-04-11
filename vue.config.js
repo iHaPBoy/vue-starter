@@ -1,4 +1,6 @@
 const isProd = process.env.NODE_ENV === 'production'
+const path = require('path')
+const resolve = dir => path.join(__dirname, dir)
 
 module.exports = {
 
@@ -79,7 +81,12 @@ module.exports = {
 
   // 函数，会接收一个基于 webpack-chain 的 ChainableConfig 实例
   // 对内部的 webpack 配置进行更细粒度的修改 (比如修改、增加Loader选项) (链式操作)
-  // chainWebpack: config => {},
+  chainWebpack: config => {
+    // 添加别名
+    config.resolve.alias
+      .set('assets', resolve('src/assets'))
+      .set('components', resolve('src/components'))
+  },
 
   // 配置高于 chainWebpack 中关于 css loader 的配置
   css: {
