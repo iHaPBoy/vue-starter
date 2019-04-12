@@ -1,4 +1,5 @@
 import axios from 'axios'
+// import { getToken, removeToken } from '@/utils/auth'
 
 // Full config:  https://github.com/axios/axios#request-config
 const config = {
@@ -26,7 +27,7 @@ _axios.interceptors.request.use(
     // 处理请求之前的配置
     /*
     // 携带 Authorization Token
-    const token = localStorage.getItem('token')
+    const token = getToken()
     if (token) {
       config.headers.common['Authorization'] = 'Bearer ' + token
     }
@@ -54,22 +55,19 @@ _axios.interceptors.response.use(
         case 401:
           /*
           // 判断是否有 Token
-          const token = localStorage.getItem('token')
-          if (token) {
+          if (getToken()) {
             // 错误提示
             Message({
               type: 'error',
               message: '登录信息过期，请重新登录'
             })
-            // 清除 Token, 用户状态信息
-            localStorage.removeItem('token')
+            // 清除 用户状态信息 (Token, 用户信息) TODO
+            removeToken()
           }
           // 跳转登录页
           router.replace({
-            path: '/login',
-            query: {
-              redirect: router.currentRoute.fullPath
-            }
+            name: 'userLogin',
+            query: { redirect: router.currentRoute.fullPath }
           })
           */
           break
