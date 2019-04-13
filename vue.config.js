@@ -82,10 +82,27 @@ module.exports = {
   // 函数，会接收一个基于 webpack-chain 的 ChainableConfig 实例
   // 对内部的 webpack 配置进行更细粒度的修改 (比如修改、增加Loader选项) (链式操作)
   chainWebpack: config => {
-    // 添加别名
+    // set alias
     config.resolve.alias
       .set('assets', resolve('src/assets'))
       .set('components', resolve('src/components'))
+
+    // set svg-sprite-loader
+    config.module
+      .rule('svg')
+      .exclude.add(resolve('src/icons'))
+      .end()
+    config.module
+      .rule('icons')
+      .test(/\.svg$/)
+      .include.add(resolve('src/icons'))
+      .end()
+      .use('svg-sprite-loader')
+      .loader('svg-sprite-loader')
+      .options({
+        symbolId: 'icon-[name]'
+      })
+      .end()
   },
 
   // 配置高于 chainWebpack 中关于 css loader 的配置
