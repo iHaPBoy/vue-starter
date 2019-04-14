@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import { VueAxios } from './utils/axios'
 
+import './styles/index.scss' // global css
 import './icons' // icons
 
 Vue.config.productionTip = false
