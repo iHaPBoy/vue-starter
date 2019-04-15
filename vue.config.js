@@ -126,7 +126,10 @@ module.exports = {
       // 给 sass-loader 传递选项
       sass: {
         // @/ 是 src/ 的别名
-        // data: `@import "~@/variables.scss";`
+        data: `
+          @import "~@/styles/_variables.scss";
+          @import "~@/styles/_mixin.scss";
+        `
       },
       // 给 postcss-loader 传递选项
       postcss: {
