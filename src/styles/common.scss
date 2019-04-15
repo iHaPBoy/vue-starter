@@ -2,16 +2,30 @@
 @import './_mixin';
 
 html {
+  // mobile
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  touch-action: manipulation;
+  text-size-adjust: none;
+  user-select: none;
+  // root font-size for rem
+  font-size: (75 / 750) * 100vw; // 1rem = 10vw = 75px (design)
 }
 
 body {
   background-color: $background-color;
   color: $text-color;
+  line-height: 1;
   font-size: 16px;
   font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+}
+
+// mobile
+*, ::after, ::before {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .hide {

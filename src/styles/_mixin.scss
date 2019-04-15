@@ -1,3 +1,9 @@
+// px2rem
+@function px2rem($px) {
+  $rem: 75px;
+  @return ($px / $rem) + rem;
+}
+
 // clearfix
 @mixin clearfix {
   &:after {
