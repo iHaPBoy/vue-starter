@@ -1,6 +1,7 @@
-const isProd = process.env.NODE_ENV === 'production'
+const TerserPlugin = require('terser-webpack-plugin')
 const path = require('path')
 const resolve = dir => path.join(__dirname, dir)
+const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = {
 
@@ -69,15 +70,39 @@ module.exports = {
   // 1. 如果这个值是一个对象，则会通过 webpack-merge 合并到最终的配置中
   // 2. 如果你需要基于环境有条件地配置行为，或者想要直接修改配置，则使用函数 (该函数会在环境变量被设置之后懒执行)
   //    该方法的第一个参数会收到已经解析好的配置，可以直接修改配置，或者返回一个将会被合并的对象
-  /*
   configureWebpack: config => {
     if (isProd) {
       // 为生产环境修改配置...
+      // TerserPlugin
+      config.optimization = config.optimization || {}
+      config.optimization.minimizer = [
+        new TerserPlugin({
+          cache: true,
+          parallel: true,
+          sourceMap: false,
+          terserOptions: {
+            compress: {
+              drop_console: true, // 移除 console
+              drop_debugger: true // 移除 debugger
+            }
+          }
+        })
+      ]
+
+      // externals
+      // 指定外部依赖, 不打包到 bundle 中, 在运行时(runtime)从外部获取
+      /*
+      config.externals = {
+        'vue': 'Vue',
+        'vue-router': 'VueRouter',
+        'vuex': 'Vuex',
+        'axios': 'axios'
+      }
+      */
     } else {
       // 为开发环境修改配置...
     }
   },
-  */
 
   // 函数，会接收一个基于 webpack-chain 的 ChainableConfig 实例
   // 对内部的 webpack 配置进行更细粒度的修改 (比如修改、增加Loader选项) (链式操作)
