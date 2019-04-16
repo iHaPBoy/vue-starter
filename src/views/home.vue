@@ -13,6 +13,13 @@ export default {
   name: 'Home',
   components: {
     HelloWorld
+  },
+  metaInfo: {
+    title: 'Home',
+    meta: [
+      { vmid: 'description', name: 'description', content: 'Vue.js Home' },
+      { vmid: 'keywords', name: 'keywords', content: 'vue.js,js' }
+    ]
   }
 }
 </script>
