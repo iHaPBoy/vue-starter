@@ -1,12 +1,17 @@
-html {
-}
+@import './_variables';
+@import './_mixin';
 
-body {
+html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+}
+
+body {
+  background-color: $background-color;
+  color: $text-color;
   font-size: 16px;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
 }
 
 .hide {
@@ -18,7 +23,5 @@ body {
 }
 
 .ellipsis {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  @include clearfix;
 }
