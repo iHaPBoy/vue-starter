@@ -6,6 +6,7 @@ import store from './store'
 import { VueAxios } from './utils/axios'
 import EventBus from './eventBus'
 import filters from './filters'
+import i18n from './locale' // i18n
 
 import './styles/index.scss' // global css
 import './icons' // icons
@@ -26,5 +27,6 @@ Object.keys(filters).forEach(filterName => {
 new Vue({
   router,
   store,
+  i18n,
   render: h => h(App)
 }).$mount('#app')
