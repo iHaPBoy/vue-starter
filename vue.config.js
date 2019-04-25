@@ -171,6 +171,7 @@ module.exports = {
     port: 8080, // 端口
     https: false, // 使用 https
     hotOnly: true, // 热更新
+    disableHostCheck: true, // 不验证 Host Header
     */
 
     // 设置任何未知请求 (没有匹配到静态文件的请求) 代理
