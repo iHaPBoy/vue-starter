@@ -1,4 +1,21 @@
+import Vue from 'vue'
+
+export const isServer = Vue.prototype.$isServer
+
 export function noop () {}
+
+export function isEmpty (value) {
+  const type = typeof value
+  return (!value || (type === 'string' && !value.trim()) || value.length === 0)
+}
+
+export function isBlank (value) {
+  return (!value || /^\s*$/.test(value))
+}
+
+export function isDef (value) {
+  return value !== undefined && value !== null
+}
 
 export function isObj (value) {
   const type = typeof value
